@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/editTextRegisterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:ems="12"
+        android:minHeight="40dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:background="@drawable/round_white_box"
+        android:elevation="4dp"
+        android:hint="@string/name"
+        android:gravity="center_vertical"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextRegisterEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="12"
+        android:hint="@string/email"
+        android:minHeight="40dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:background="@drawable/round_white_box"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@id/editTextRegisterName"
+        app:layout_constraintStart_toStartOf="@id/editTextRegisterName"
+        app:layout_constraintTop_toBottomOf="@id/editTextRegisterName" />
+
+    <EditText
+        android:id="@+id/editTextRegisterPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="12"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:minHeight="40dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:background="@drawable/round_white_box"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextRegisterEmailAddress"
+        app:layout_constraintStart_toStartOf="@id/editTextRegisterEmailAddress"
+        app:layout_constraintEnd_toEndOf="@id/editTextRegisterEmailAddress"/>
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="240dp"
+        android:text="@string/register_now"
+        android:layout_marginTop="36dp"
+        app:layout_constraintTop_toBottomOf="@id/editTextRegisterPassword"
+        app:layout_constraintStart_toStartOf="@id/editTextRegisterPassword"
+        app:layout_constraintEnd_toEndOf="@id/editTextRegisterPassword"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
