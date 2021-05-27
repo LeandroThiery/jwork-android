@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
-
                 if (validateInput(email, password)) {
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
@@ -45,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(response);
                                 if(jsonObject != null) {
                                     Toast.makeText(LoginActivity.this, "Login Successful, Hello " + jsonObject.getString("name"), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             } catch (JSONException e) {
                                 Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
@@ -71,6 +73,12 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validateInput(String email, String password) {
         if (email.isEmpty()) {
             etEmail.setError("Email is empty!");
+            etEmail.requestFocus();
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            etEmail.setError("Email is invalid!");
             etEmail.requestFocus();
             return false;
         }
