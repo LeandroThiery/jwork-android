@@ -61,7 +61,7 @@ public class MainListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        Recruiter recruiter = (Recruiter)  getGroup(groupPosition);
+        Recruiter recruiter = (Recruiter) getGroup(groupPosition);
         String headerTitle = recruiter.getName();
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -79,7 +79,7 @@ public class MainListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         Job job = (Job) getChild(groupPosition, childPosition);
         String childText = job.getName();
-        if(convertView == null) {
+        if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.layout_job, null);
         }

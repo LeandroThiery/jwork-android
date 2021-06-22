@@ -1,6 +1,8 @@
 package leandrothiery.jwork_android;
 
-public class Recruiter {
+import java.io.Serializable;
+
+public class Recruiter implements Serializable {
     private int id;
     private String name;
     private String email;

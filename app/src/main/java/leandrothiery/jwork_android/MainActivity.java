@@ -2,9 +2,11 @@ package leandrothiery.jwork_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
@@ -18,7 +20,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Recruiter> listRecruiter = new ArrayList<>();
@@ -28,12 +29,43 @@ public class MainActivity extends AppCompatActivity {
     private MainListAdapter listAdapter;
     ExpandableListView expListView;
 
+    Button btnApplied;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        int userId = intent.getIntExtra("id", 0);
+
         expListView = findViewById(R.id.lvExp);
+
+        listAdapter = new MainListAdapter(getApplicationContext(), listRecruiter, childMapping);
+        expListView.setAdapter(listAdapter);
+
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Job selectedJob = listAdapter.getChild(groupPosition, childPosition);
+                Toast.makeText(MainActivity.this, selectedJob.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ApplyJobActivity.class);
+                intent.putExtra("Job", selectedJob);
+                intent.putExtra("id", userId);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        btnApplied = findViewById(R.id.btnApplied);
+        btnApplied.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListInvoiceActivity.class);
+                intent.putExtra("id", userId);
+                startActivity(intent);
+            }
+        });
 
         refreshList();
     }
@@ -71,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
                             jobIdList.add(job1);
 
-                            for(Recruiter rec : listRecruiter) {
+                            for (Recruiter rec : listRecruiter) {
                                 ArrayList<Job> temp = new ArrayList<>();
                                 for (Job job2 : jobIdList) {
                                     if (job2.getRecruiter().getName().equals(rec.getName()) ||
-                                    job2.getRecruiter().getEmail().equals(rec.getEmail()) ||
-                                    job2.getRecruiter().getPhoneNumber().equals(rec.getPhoneNumber())) {
+                                            job2.getRecruiter().getEmail().equals(rec.getEmail()) ||
+                                            job2.getRecruiter().getPhoneNumber().equals(rec.getPhoneNumber())) {
                                         temp.add(job2);
                                     }
                                 }
@@ -84,8 +116,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }
-                    listAdapter = new MainListAdapter(getApplicationContext(), listRecruiter, childMapping);
-                    expListView.setAdapter(listAdapter);
+                    listAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     Log.e("Error", "JSON ERROR", e);
                 }

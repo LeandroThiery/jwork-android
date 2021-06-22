@@ -1,6 +1,8 @@
 package leandrothiery.jwork_android;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
     private String province;
     private String description;
     private String city;

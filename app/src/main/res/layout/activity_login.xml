@@ -12,27 +12,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
+        android:background="@mipmap/ic_launcher_round"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:background="@mipmap/ic_launcher_round"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-    />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editTextLoginEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
+        android:background="@drawable/round_white_box"
+        android:elevation="4dp"
         android:ems="12"
+        android:gravity="center_vertical"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:minHeight="40dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:hint="@string/email"
-        android:background="@drawable/round_white_box"
-        android:elevation="4dp"
-        android:gravity="center_vertical"
-        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@id/icon"
         app:layout_constraintStart_toStartOf="@id/icon"
         app:layout_constraintTop_toTopOf="@id/icon" />
@@ -41,40 +41,40 @@
         android:id="@+id/editTextLoginPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/round_white_box"
+        android:elevation="4dp"
         android:ems="12"
-        android:minHeight="40dp"
+        android:gravity="center_vertical"
         android:hint="@string/password"
+        android:inputType="textPassword"
+        android:minHeight="40dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:elevation="4dp"
-        android:background="@drawable/round_white_box"
-        android:inputType="textPassword"
-        android:gravity="center_vertical"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/editTextLoginEmailAddress"
+        app:layout_constraintEnd_toEndOf="@id/editTextLoginEmailAddress"
         app:layout_constraintStart_toStartOf="@id/editTextLoginEmailAddress"
-        app:layout_constraintEnd_toEndOf="@id/editTextLoginEmailAddress"/>
+        app:layout_constraintTop_toBottomOf="@id/editTextLoginEmailAddress" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:minWidth="240dp"
         android:text="@string/login"
-        android:layout_marginTop="36dp"
-        app:layout_constraintTop_toBottomOf="@id/editTextLoginPassword"
+        app:layout_constraintEnd_toEndOf="@id/editTextLoginPassword"
         app:layout_constraintStart_toStartOf="@id/editTextLoginPassword"
-        app:layout_constraintEnd_toEndOf="@id/editTextLoginPassword"/>
+        app:layout_constraintTop_toBottomOf="@id/editTextLoginPassword" />
 
     <TextView
         android:id="@+id/textViewRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register_now"
-        android:textSize="18sp"
-        android:textColor="@color/design_default_color_primary_dark"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@id/buttonLogin"
+        android:text="@string/register_now"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/buttonLogin"
         app:layout_constraintStart_toStartOf="@id/buttonLogin"
-        app:layout_constraintEnd_toEndOf="@id/buttonLogin"/>
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

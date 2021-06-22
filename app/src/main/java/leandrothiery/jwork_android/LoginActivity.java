@@ -43,9 +43,10 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
-                                if(jsonObject != null) {
-                                    Toast.makeText(LoginActivity.this, "Login Successful, Hello " + jsonObject.getString("name"), Toast.LENGTH_SHORT).show();
+                                if (jsonObject != null) {
+                                    Toast.makeText(LoginActivity.this, "Login Successful, Hello " + jsonObject.toString(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("id", jsonObject.getInt("id"));
                                     startActivity(intent);
                                 }
                             } catch (JSONException e) {
@@ -83,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if(password.isEmpty()) {
+        if (password.isEmpty()) {
             etPassword.setError("Password is empty!");
             etPassword.requestFocus();
             return false;

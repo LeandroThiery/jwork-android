@@ -88,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        if(password.isEmpty()) {
+        if (password.isEmpty()) {
             etPassword.setError("Password is empty!");
             etPassword.requestFocus();
             return false;
