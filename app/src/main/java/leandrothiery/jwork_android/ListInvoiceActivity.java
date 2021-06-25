@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,10 +19,16 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Activity of listing Invoices made
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class ListInvoiceActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private InvoiceRecycleViewAdapter invoiceRecycleViewAdapter;
-    private ArrayList<Invoice> invoices;
+    private ArrayList<Invoice> invoices = new ArrayList<>();
     private int jobseekerId;
 
     @Override
@@ -30,8 +37,6 @@ public class ListInvoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_invoice);
         Intent intent = getIntent();
         jobseekerId = intent.getIntExtra("id", 0);
-
-        invoices = new ArrayList<>();
 
         recyclerView = findViewById(R.id.invoiceRecycleView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
@@ -43,7 +48,11 @@ public class ListInvoiceActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Function to refresh adapter and invoice list
+     */
     private void refreshList() {
+        invoices.clear();
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -81,13 +90,11 @@ public class ListInvoiceActivity extends AppCompatActivity {
 
                                 JSONObject location = recruiter.getJSONObject("location");
 
-
                                 String province = location.getString("province");
                                 String city = location.getString("city");
                                 String description = location.getString("description");
 
                                 Location invoiceLocation = new Location(province, description, city);
-
 
                                 Recruiter invoiceRecruiter = new Recruiter(recruiterId, recruiterName, email, phoneNumber, invoiceLocation);
                                 Job invoiceJob = new Job(jobId, jobName, invoiceRecruiter, fee, category);
@@ -96,10 +103,17 @@ public class ListInvoiceActivity extends AppCompatActivity {
 
                             }
 
-
                             Invoice invoice = new Invoice(invoiceId, jobs, totalFee, date, invoiceStatus, paymentType);
+
+                            if (paymentType.equals("EwalletPayment")) {
+                                JSONObject bonus = invoiceJson.getJSONObject("bonus");
+                                String referralCode = bonus.getString("referralCode");
+                                invoice.setReferralCode(referralCode);
+                            }
                             invoices.add(invoice);
                         }
+                    } else {
+                        Toast.makeText(ListInvoiceActivity.this, "Something happened, please try again", Toast.LENGTH_SHORT).show();
                     }
                     invoiceRecycleViewAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {

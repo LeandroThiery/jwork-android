@@ -11,8 +11,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+/**
+ * Adapter to list all invoice of jobseeker
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class InvoiceRecycleViewAdapter extends RecyclerView.Adapter<InvoiceRecycleViewAdapter.InvoiceRVViewHolder> {
     private Context context;
     private ArrayList<Invoice> arrayList;

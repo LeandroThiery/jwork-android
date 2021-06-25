@@ -10,10 +10,23 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * POST request to register a new Jobseeker
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class RegisterRequest extends StringRequest {
     private static final String URL = "http://192.168.0.102:8080/jobseeker/register";
     private Map<String, String> params;
 
+    /**
+     * Constructor of request
+     * @param name name of Jobseeker
+     * @param email email of jobseeker
+     * @param password password of jobseeker
+     * @param listener listener for response
+     */
     public RegisterRequest(String name,
                            String email,
                            String password,

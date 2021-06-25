@@ -20,7 +20,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * Main activity of appplication
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class MainActivity extends AppCompatActivity {
     ArrayList<Recruiter> listRecruiter = new ArrayList<>();
     ArrayList<Job> jobIdList = new ArrayList<>();
@@ -38,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int userId = intent.getIntExtra("id", 0);
+        String jobseekerName = intent.getStringExtra("name");
+
+        getSupportActionBar().setTitle("Hello, " + jobseekerName);
 
         expListView = findViewById(R.id.lvExp);
 
@@ -70,8 +78,10 @@ public class MainActivity extends AppCompatActivity {
         refreshList();
     }
 
+    /**
+     * Refresh the list of Jobs available
+     */
     private void refreshList() {
-
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

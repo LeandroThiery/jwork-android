@@ -10,10 +10,23 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * POST request to login jobseeker
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class LoginRequest extends StringRequest {
     private static final String URL = "http://192.168.0.102:8080/jobseeker/login";
     private Map<String, String> params;
 
+    /**
+     * Constructor of request
+     *
+     * @param email    email of jobseeker
+     * @param password password of jobseeker
+     * @param listener listener for response
+     */
     public LoginRequest(String email, String password, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         params = new HashMap<>();

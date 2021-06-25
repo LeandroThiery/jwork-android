@@ -20,6 +20,15 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Activity of registering a new jobseeker
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class RegisterActivity extends AppCompatActivity {
     private EditText etName, etEmail, etPassword;
     private Button btnRegister;
@@ -69,6 +78,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Validate given input before request registering
+     *
+     * @param name     name of jobseeker
+     * @param email    email of jobseeker
+     * @param password password of jobseeker
+     * @return whether input is valid
+     */
     private boolean validateInput(String name, String email, String password) {
         if (name.isEmpty()) {
             etName.setError("Name is empty!");
@@ -90,6 +107,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (password.isEmpty()) {
             etPassword.setError("Password is empty!");
+            etPassword.requestFocus();
+            return false;
+        }
+
+        Pattern passRegex = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=\\S+$).{6,}$");
+        Matcher passMatch = passRegex.matcher(password);
+        if (!passMatch.matches()) {
+            etPassword.setError("Password must be 6 characters long, with case, number, and symbol");
             etPassword.requestFocus();
             return false;
         }

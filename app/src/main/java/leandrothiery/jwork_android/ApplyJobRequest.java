@@ -11,12 +11,27 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * POST Request to add an Invoice
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class ApplyJobRequest extends StringRequest {
     private static final String URL_EWALLET = "http://192.168.0.102:8080/invoice/createEwalletPayment";
     private static final String URL_BANK = "http://192.168.0.102:8080/invoice/createBankPayment";
     private Map<String, String> params;
 
     // E-wallet Payment
+
+    /**
+     * Request for Ewallet Payment Type
+     *
+     * @param jobIdList    list of Job
+     * @param jobseekerId  id of Jobseeker
+     * @param referralCode Bonus's referralCode
+     * @param listener     listener for response
+     */
     public ApplyJobRequest(int jobIdList,
                            int jobseekerId,
                            String referralCode,
@@ -34,6 +49,15 @@ public class ApplyJobRequest extends StringRequest {
     }
 
     // Bank Payment
+
+    /**
+     * Request for Bank Payment Type
+     *
+     * @param jobIdList   list of jobs
+     * @param jobseekerId id of Jobseeker
+     * @param adminFee    bank's adminFee
+     * @param listener    listener for response
+     */
     public ApplyJobRequest(int jobIdList,
                            int jobseekerId,
                            int adminFee,

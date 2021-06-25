@@ -20,9 +20,15 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Activity of applying a Job
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class ApplyJobActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
-    private int jobseekerID, jobID, bonus;
-    private String jobName, jobCategory, selectedPayment;
+    private int jobseekerID, jobID;
+    private String jobName, jobCategory;
     private double jobFee;
 
     private TextView tvJobName, tvJobCategory, tvJobFee, tvTextCode, tvTotalFee;
@@ -39,8 +45,6 @@ public class ApplyJobActivity extends AppCompatActivity implements View.OnClickL
 
         Job job = (Job) intent.getSerializableExtra("Job");
         jobseekerID = intent.getIntExtra("id", 0);
-
-        Toast.makeText(this, "This id is" + String.valueOf(jobseekerID), Toast.LENGTH_SHORT).show();
 
         jobID = job.getId();
         jobName = job.getName();
@@ -88,6 +92,9 @@ public class ApplyJobActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    /**
+     * Request to API to insert a new Invoice to Database
+     */
     private void applyJob() {
         if (radioGroup.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "Please choose one of the payment type", Toast.LENGTH_SHORT).show();
@@ -104,6 +111,8 @@ public class ApplyJobActivity extends AppCompatActivity implements View.OnClickL
                         if (jsonObject != null) {
                             Toast.makeText(ApplyJobActivity.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
                             finish();
+                        } else {
+                            Toast.makeText(ApplyJobActivity.this, "Failed to Apply, Please Try again", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         Log.e("JSON ERROR", "Failed Response", e);
@@ -134,6 +143,9 @@ public class ApplyJobActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /**
+     * Count the total fee based on the selected payment method
+     */
     private void countFee() {
 
         if (radioGroup.getCheckedRadioButtonId() == -1) {
@@ -148,15 +160,17 @@ public class ApplyJobActivity extends AppCompatActivity implements View.OnClickL
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject != null && jsonObject.getBoolean("active")
                                     && jobFee >= jsonObject.getInt("minTotalFee")) {
-                                Toast.makeText(ApplyJobActivity.this, "Code Applied", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ApplyJobActivity.this, "Referral Code Applied", Toast.LENGTH_SHORT).show();
                                 jobFee += jsonObject.getInt("extraFee");
                                 tvTotalFee.setText(String.valueOf(jobFee));
+                            } else {
+                                Toast.makeText(ApplyJobActivity.this, "Referral Code Failed to be applied", Toast.LENGTH_SHORT).show();
+                                etReferralCode.getText().clear();
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
 
                     }
                 };

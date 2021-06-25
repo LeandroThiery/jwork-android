@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Adapter to list all jobs and recruiters
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class MainListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private ArrayList<Recruiter> listDataHeader;
@@ -77,7 +83,7 @@ public class MainListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        Job job = (Job) getChild(groupPosition, childPosition);
+        Job job = getChild(groupPosition, childPosition);
         String childText = job.getName();
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

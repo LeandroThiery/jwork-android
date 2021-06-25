@@ -18,6 +18,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Activity of login into appliaction
+ *
+ * @author Leandro Thiery
+ * @version 06/25/2021
+ */
 public class LoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private Button btnLogin;
@@ -44,9 +50,10 @@ public class LoginActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(response);
                                 if (jsonObject != null) {
-                                    Toast.makeText(LoginActivity.this, "Login Successful, Hello " + jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     intent.putExtra("id", jsonObject.getInt("id"));
+                                    intent.putExtra("name", jsonObject.getString("name"));
                                     startActivity(intent);
                                 }
                             } catch (JSONException e) {
@@ -54,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     };
-
                     LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                     queue.add(loginRequest);
@@ -71,6 +77,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Validate given input
+     * @param email email of jobseeker
+     * @param password password of jobseeker
+     * @return whether input is valid
+     */
     private boolean validateInput(String email, String password) {
         if (email.isEmpty()) {
             etEmail.setError("Email is empty!");
