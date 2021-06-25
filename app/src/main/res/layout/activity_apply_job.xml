@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ApplyJobActivity">
+    tools:context=".ApplyJobActivity"
+    android:background="@color/design_default_color_primary_dark">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,6 +33,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Apply Job"
+                    android:textColor="@color/design_default_color_primary_dark"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -42,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="Job Name"
+                    android:textColor="@color/design_default_color_primary_dark"
                     app:layout_constraintStart_toStartOf="@+id/pesanan"
                     app:layout_constraintTop_toBottomOf="@+id/pesanan" />
 
@@ -62,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Job Category"
+                    android:textColor="@color/design_default_color_primary_dark"
                     app:layout_constraintStart_toStartOf="@+id/staticJobName"
                     app:layout_constraintTop_toBottomOf="@+id/staticJobName" />
 
@@ -81,6 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Job Fee"
+                    android:textColor="@color/design_default_color_primary_dark"
                     app:layout_constraintStart_toStartOf="@id/staticCategory"
                     app:layout_constraintTop_toBottomOf="@+id/staticCategory" />
 
@@ -101,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Payment Method"
+                    android:textColor="@color/design_default_color_primary_dark"
                     app:layout_constraintStart_toStartOf="@+id/staticFee"
                     app:layout_constraintTop_toBottomOf="@+id/staticFee" />
 
@@ -115,13 +121,17 @@
                         android:id="@+id/ewallet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="E-wallet" />
+                        android:buttonTint="@color/design_default_color_primary_dark"
+                        android:text="E-wallet"
+                        android:textColor="@color/design_default_color_primary_dark" />
 
                     <RadioButton
                         android:id="@+id/bank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Bank" />
+                        android:buttonTint="@color/design_default_color_primary_dark"
+                        android:text="Bank"
+                        android:textColor="@color/design_default_color_primary_dark" />
                 </RadioGroup>
 
                 <TextView
@@ -131,6 +141,7 @@
                     android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
                     android:text="Referral Code"
+                    android:textColor="@color/design_default_color_primary_dark"
                     app:layout_constraintStart_toStartOf="@id/radioGroup"
                     app:layout_constraintTop_toBottomOf="@id/radioGroup" />
 
@@ -140,6 +151,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Referral Code"
                     android:textSize="15sp"
+                    android:maxLines="1"
+                    android:backgroundTint="@color/design_default_color_primary_dark"
                     app:layout_constraintBottom_toBottomOf="@id/textCode"
                     app:layout_constraintEnd_toEndOf="@id/job_fee"
                     app:layout_constraintHorizontal_bias="1"
@@ -152,6 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="Total Fee"
+                    android:textColor="@color/design_default_color_primary_dark"
                     app:layout_constraintStart_toStartOf="@id/textCode"
                     app:layout_constraintTop_toBottomOf="@id/textCode" />
 

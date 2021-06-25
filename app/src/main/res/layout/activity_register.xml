@@ -21,6 +21,7 @@
         android:minHeight="40dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
+        android:textColorHint="@color/design_default_color_primary_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +40,7 @@
         android:minHeight="40dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
+        android:textColorHint="@color/design_default_color_primary_dark"
         app:layout_constraintEnd_toEndOf="@id/editTextRegisterName"
         app:layout_constraintStart_toStartOf="@id/editTextRegisterName"
         app:layout_constraintTop_toBottomOf="@id/editTextRegisterName" />
@@ -57,6 +59,7 @@
         android:minHeight="40dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
+        android:textColorHint="@color/design_default_color_primary_dark"
         app:layout_constraintEnd_toEndOf="@id/editTextRegisterEmailAddress"
         app:layout_constraintStart_toStartOf="@id/editTextRegisterEmailAddress"
         app:layout_constraintTop_toBottomOf="@id/editTextRegisterEmailAddress" />
